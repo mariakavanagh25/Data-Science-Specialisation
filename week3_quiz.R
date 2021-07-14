@@ -20,3 +20,19 @@ q1 <- read.csv("q1.csv")
 agricultureLogical <-  ifelse(q1$ACR==3 & q1$AGS ==6, TRUE, FALSE)
 which(agricultureLogical)[1:3]
 
+# Question 2
+# Using the jpeg package read in the following picture of your instructor into R
+# https://d396qusza40orc.cloudfront.net/getdata%2Fjeff.jpg 
+
+# Use the parameter native=TRUE. What are the 30th and 80th quantiles of the resulting data? 
+# (some Linux systems may produce an answer 638 different for the 30th quantile)# 
+
+install.packages("jpeg")
+library(jpeg)
+
+file <- "https://d396qusza40orc.cloudfront.net/getdata%2Fjeff.jpg"
+download.file(file, destfile = "q2.jpg", mode ="wb")
+
+q2 <- readJPEG("q2.jpg", native = TRUE)
+quantile(q2, probs = c(0.3, 0.8))
+
