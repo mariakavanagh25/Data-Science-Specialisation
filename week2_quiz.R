@@ -70,3 +70,20 @@ file <- "http://biostat.jhsph.edu/~jleek/contact.html"
 html <- readLines(file)
 lines <- html[c(10,20,30,100)]
 nchar(lines)
+
+# Question 5
+# Read this data set into R and report the sum of the numbers in the fourth of the nine columns.
+# https://d396qusza40orc.cloudfront.net/getdata%2Fwksst8110.for
+# Original source of the data: http://www.cpc.ncep.noaa.gov/data/indices/wksst8110.for
+# (Hint this is a fixed width file format)
+
+file <- "https://d396qusza40orc.cloudfront.net/getdata%2Fwksst8110.for"
+
+# view the file:http://www.cpc.ncep.noaa.gov/data/indices/wksst8110.for 
+# and decide on column formats; note there are extra spaces after the characters so while 
+# first column looks like 9 characters, its actually 15, 
+# takes a bit of trial and error to get correct; must be better way
+
+colwidth <- c(15,4,9,4,9,4,9,4,9)
+mydata <- read.fwf(file,widths=colwidth, skip=4)
+sum(mydata[,4]) 
