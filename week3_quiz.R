@@ -50,6 +50,7 @@ quantile(q2, probs = c(0.3, 0.8))
 
 install.packages("tidyr")
 library(tidyr)
+library(dplyr)
 
 # Look at file - data starts on row 6 - skip the first 5 rows, but do not take 1st row as headers
 # Select only the columns with data and select only the ranked countries
@@ -75,4 +76,9 @@ nrow(merged_df)
 sort_df <- arrange(merged_df, desc(Rank_gdp))
 sort_df[13,c(1,3)]
 
+# Question 4
+# What is the average GDP ranking for the "High income: OECD" and "High income: nonOECD" group?  
+merged_df%>%
+  group_by(Income.Group)%>%
+  summarize(avg_gdp =mean(Rank_gdp), .groups='keep')
 
