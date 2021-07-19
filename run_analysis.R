@@ -74,8 +74,8 @@ unzip("./accelerometer_zip.zip")
   test_train_file <- cbind(subset,activity_test_train,subject_test_train)
 
 # Step 5: Create a tidy data set with the average of each variable for each activity and each subject
-
-
-
-
+  tidy_data_set <- test_train_file%>% 
+                    group_by(activity_description,subject)%>%
+                    summarise_all(mean)
+  
 
